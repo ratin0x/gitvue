@@ -22,25 +22,11 @@ var _reactTapEventPlugin = require('react-tap-event-plugin');
 
 var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-var _Card = require('material-ui/Card');
-
 var _Paper = require('material-ui/Paper');
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
 var _List = require('material-ui/List');
-
-var _TextField = require('material-ui/TextField');
-
-var _TextField2 = _interopRequireDefault(_TextField);
-
-var _FlatButton = require('material-ui/FlatButton');
-
-var _FlatButton2 = _interopRequireDefault(_FlatButton);
-
-var _darkBaseTheme = require('material-ui/styles/baseThemes/darkBaseTheme');
-
-var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
 var _lightBaseTheme = require('material-ui/styles/baseThemes/lightBaseTheme');
 
@@ -56,10 +42,6 @@ var _GridList = require('material-ui/GridList');
 
 var _Table = require('material-ui/Table');
 
-var _FontIcon = require('material-ui/FontIcon');
-
-var _FontIcon2 = _interopRequireDefault(_FontIcon);
-
 var _IconButton = require('material-ui/IconButton');
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
@@ -67,10 +49,6 @@ var _IconButton2 = _interopRequireDefault(_IconButton);
 var _DatePicker = require('material-ui/DatePicker');
 
 var _DatePicker2 = _interopRequireDefault(_DatePicker);
-
-var _colors = require('material-ui/styles/colors');
-
-var Colors = _interopRequireWildcard(_colors);
 
 var _moment = require('moment');
 
@@ -82,8 +60,6 @@ var _promisePolyfill2 = _interopRequireDefault(_promisePolyfill);
 
 require('whatwg-fetch');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92,6 +68,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//Polyfill for fetch on older browsers
 if (!window.Promise) {
     window.Promise = _promisePolyfill2.default;
 }

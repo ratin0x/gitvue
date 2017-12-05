@@ -1,28 +1,23 @@
 import "babel-polyfill";
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link, Switch, withRouter } from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Card, CardTitle, CardText, CardActions, CardHeader } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
-import {List, ListItem} from 'material-ui/List';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import {ListItem} from 'material-ui/List';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList} from 'material-ui/GridList';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
-import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
-import * as Colors from 'material-ui/styles/colors';
 import moment from 'moment';
 import Promise from 'promise-polyfill';
 import 'whatwg-fetch';
 
+//Polyfill for fetch on older browsers
 if (!window.Promise) {
   window.Promise = Promise;
 }
@@ -178,11 +173,14 @@ class App extends Component {
     
     //Composes and returns the query we'll pass to the GitHub API
     getQuery() {
+        //See if we have a query from a paging link - ie from the link header - 
+        //parse it, and return
         if (this.state.searchQuery && this.state.searchQuery.length > 0) {
             let search = decodeURIComponent(this.state.searchQuery);
             search = search.replace('<', '').substring(0, search.indexOf('>;') - 1);
             return search;
         } else {
+            //Otherwise, construct a query from the state params.
             //Query example : https://api.github.com/search/repositories?q=topic:vuejs+pushed:>=2017-12-01&sort=updated&order=desc
             return this.state.apiRoot + '?q=topic:' + this.state.queryTopic 
                 + '+pushed:' + this.state.pushedOperator + this.state.startDate.format(DATE_FORMAT)
@@ -210,6 +208,7 @@ class App extends Component {
         }/> }/>]        
     }
     
+    //Call fetch once the root component has mounted
     componentDidMount() {
         this.getAppData();
     }
