@@ -262,11 +262,14 @@ var App = function (_Component) {
     }, {
         key: 'getQuery',
         value: function getQuery() {
+            //See if we have a query from a paging link - ie from the link header - 
+            //parse it, and return
             if (this.state.searchQuery && this.state.searchQuery.length > 0) {
                 var search = decodeURIComponent(this.state.searchQuery);
                 search = search.replace('<', '').substring(0, search.indexOf('>;') - 1);
                 return search;
             } else {
+                //Otherwise, construct a query from the state params.
                 //Query example : https://api.github.com/search/repositories?q=topic:vuejs+pushed:>=2017-12-01&sort=updated&order=desc
                 return this.state.apiRoot + '?q=topic:' + this.state.queryTopic + '+pushed:' + this.state.pushedOperator + this.state.startDate.format(DATE_FORMAT) + '&' + this.state.sortField + '&' + this.state.sortOrder;
             }
@@ -293,6 +296,9 @@ var App = function (_Component) {
                             )] });
                     }) }) })];
         }
+
+        //Call fetch once the root component has mounted
+
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
