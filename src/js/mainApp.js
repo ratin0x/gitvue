@@ -87,7 +87,7 @@ class App extends Component {
     }
     
     getAppData() {
-        //Get the data from the API once the component has mounted
+        //Get the data from the API
         fetch(this.getQuery(),
             {
                 headers: {
