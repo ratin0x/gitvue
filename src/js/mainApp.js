@@ -101,6 +101,8 @@ class App extends Component {
                 if ( res.status === 200 ) {
                     let pages = [];
                     let linkHeaders = res.headers.get('link');
+                    //We should always get link headers with a successful request
+                    //but we'll take care in case something goes awry
                     if ( linkHeaders ) {
                         let links = linkHeaders.split(',');
                         this.parseLinkHeaders(links);
